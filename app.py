@@ -1,12 +1,7 @@
-import nltk
-import re
-nltk.download('stopwords')
-from nltk.corpus import stopwords
-from nltk.stem.porter import PorterStemmer
 from flask import Flask,render_template,url_for,request
 from sklearn.externals import joblib
 import pickle
-from utils import preprocess
+#from utils import preprocess
 
 
 filename = 'nlp_model.pkl'
@@ -23,7 +18,7 @@ def home():
 def predict():
     if request.method == 'POST':
         message = request.form['message']
-        message = preprocess(message)
+        #message = preprocess(message)
         data = [message]
         vect = cv.transform(data).toarray()
         my_prediction = clf.predict(vect)
